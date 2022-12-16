@@ -337,6 +337,10 @@ img{
     &__text{
         display: inline-block;
         margin-bottom: var(--mb-2);
+        &:hover{
+            color: var(--white-color);
+        }
+        
     }
     &__inputs{
         display: grid;
