@@ -261,7 +261,7 @@ img{
     right: 0;
     bottom: 0;
     width: 90px;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     border-radius: 50%; 
    
 }
@@ -567,7 +567,7 @@ img{
         height: 640px;
     }
     .home__img {
-        width: 500px;
+        width: 400px;
         right: 24%;
     }
 }
