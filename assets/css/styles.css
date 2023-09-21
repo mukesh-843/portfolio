@@ -82,7 +82,7 @@ img{
 .btn {
     text-align: left;
     border-radius: 10px;
-    background-color: lightblue;
+    background-color: #b664b0;
     text-size-adjust: 15px;
     display: inline-flex;
     color: white;
@@ -166,7 +166,7 @@ img{
     top: 0;
     left: 0;
     z-index: var(--z-fixed);
-    background-color: var(--first-color);
+    background-color: black;
 }
 
 /*===== NAV =====*/
@@ -200,7 +200,12 @@ img{
     color: var(--first-color);
 }
 .nav__logo{
-    color: var(--white-color);
+    color: whitesmoke;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+    
+    
 }
 .nav__toggle{
     color: var(--white-color);
@@ -236,13 +241,12 @@ img{
 }
 .home__title{
     align-self: flex-end;
-    font-size: var(--big-font-size);
+    font-size: 100px;
     color: var(--white-color);
     line-height: .8;
+    
 }
-.home__title span{
-    text-shadow: 0 20px 25px rgba(0,0,0,.5);
-}
+
 .home__scroll{
     align-self: flex-end;
     padding-bottom: var(--mb-4);
@@ -256,9 +260,23 @@ img{
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 295px;
+    width: 90px;
     margin-bottom: 25px;
+    border-radius: 50%; 
+   
 }
+
+@media only screen and (max-width: 768px) {
+    .home__img {
+        width: 50px; 
+        margin-bottom: 5px; 
+        margin-left: auto;
+    }
+}
+
+
+
+
 
 /* ===== ABOUT =====*/
 .about__container{
