@@ -41,6 +41,9 @@ function scrollActive(){
     })
 }
 
+
+
+
 /*===== SCROLL REVEAL ANIMATION =====*/
 const sr = ScrollReveal({
     origin: 'top',
