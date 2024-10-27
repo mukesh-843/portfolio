@@ -13,6 +13,8 @@
     --white-color: #FAFAFF;
     --dark-color: #2A3B47;
     --text-color: #697477;
+    --extra-color: #021526;
+    
 }
 
 /*===== Fuente y tipografia =====*/
@@ -233,7 +235,7 @@ img{
 /*===== HOME =====*/
 .home{
     position: relative;
-    background-color: var(--first-color);
+    background-color: var(--extra-color);
     overflow: hidden;
 }
 .home__container{
@@ -243,10 +245,11 @@ img{
 .home__title{
     align-self: flex-end;
     font-size: 40px;
-    color: var(--white-color);
+    color: #FEFAE0;
     line-height: .8;
     
 }
+
 
 
 .home__scroll{
@@ -315,6 +318,98 @@ img{
 .about__social-icon:hover{
     color: var(--first-color);
 }
+
+
+
+/* Internship Section Styles */
+.internship__details-section {
+    background-color: #f4f8fb;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* Stretch the max-width to 90% of the parent */
+    margin: 30px auto;
+    border: 1px solid #e0e4e8;
+}
+
+.internship__details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.internship__subtitle {
+    font-size: 1.75em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #d1d9e0;
+}
+
+.internship__period {
+    font-size: 1em;
+    color: #6c7a89;
+    font-style: italic;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.internship__text {
+    list-style-type: disc;
+    text-align: justify;
+    font-size: 1.1em;
+    color: #2c3e50;
+    line-height: 1.8;
+    margin-top: 10px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px; /* Spacing between description and button */
+}
+
+.internship__text li {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* Button Styles */
+.internship__buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.internship__button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+    border: none;
+}
+
+.internship__button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 8px 16px rgba(41, 128, 185, 0.4);
+}
+
+.internship__button i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+
+
+
+
 
 /* ===== SKILLS =====*/
 .skills__container{
