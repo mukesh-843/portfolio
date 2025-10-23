@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mukesh Gautam - Project Engineer and .NET Full Stack Developer with expertise in modern web technologies, machine learning, and software development.">
+    <meta name="keywords" content="Mukesh Gautam, .NET Developer, Full Stack Developer, Web Developer, Software Engineer, React, C#, Azure">
+    <meta name="author" content="Mukesh Gautam">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- Performance Optimization -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//unpkg.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" as="style">
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Force update service worker and clear all caches
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    for(let registration of registrations) {
+                        registration.unregister();
+                    }
+                });
+                
+                // Clear all caches
+                if ('caches' in window) {
+                    caches.keys().then(function(cacheNames) {
+                        return Promise.all(
+                            cacheNames.map(function(cacheName) {
+                                return caches.delete(cacheName);
+                            })
+                        );
+                    });
+                }
+                
+                navigator.serviceWorker.register('./sw.js?v=' + Date.now())
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+    
+    <!-- ===== CRITICAL CSS (INLINE) ===== -->
+    <style>
+        /* Critical above-the-fold styles */
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Montserrat',sans-serif;line-height:1.6;color:#475569}
+        .preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;display:flex;justify-content:center;align-items:center;z-index:10000;transition:opacity 0.3s ease}
+        .preloader__spinner{text-align:center}.preloader__circle{width:50px;height:50px;border:3px solid #3b82f6;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
+        .preloader__text{color:#3b82f6;font-size:1.5rem;font-weight:600}
+        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+        .l-header{position:fixed;top:0;left:0;width:100%;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);z-index:1000;transition:all 0.3s ease}
+        .nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;max-width:1200px;margin:0 auto}
+        .nav__logo{color:#fff;font-size:1.5rem;font-weight:700;text-decoration:none}
+        .home{min-height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);display:flex;align-items:center;position:relative;overflow:hidden}
+        @media screen and (max-width:768px){.nav{padding:1rem}.home{padding:4rem 1rem}}
+    </style>
+    
+    <!-- ===== MAIN CSS (DEFERRED) ===== -->
+    <link rel="stylesheet" href="assets/css/styles.css" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link rel="stylesheet" href="assets/css/styles.css"></noscript>
+
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- ===== THREE.JS ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- ===== FAVICON ===== -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Mukesh Gautam | .NET Full Stack Developer Portfolio</title>
+</head>
+    <body>
+        <!--===== PRELOADER =====-->
+        <div class="preloader" id="preloader">
+            <div class="preloader__spinner">
+                <div class="preloader__circle"></div>
+                <div class="preloader__text">MG</div>
+            </div>
+        </div>
+
+        <!--===== HEADER =====-->
+        <header class="l-header" role="banner">
+            <nav class="nav bd-grid" role="navigation" aria-label="Main navigation">
+                <div class="nav__brand">
+                    <a href="#home" class="nav__logo" aria-label="Mukesh Gautam - Home">
+                        <span>Mukesh Gautam</span>
+                    </a>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list" role="menubar">
+                        <li class="nav__item" role="none">
+                            <a href="#home" class="nav__link active" role="menuitem">Home</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="#about" class="nav__link" role="menuitem">About</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="#experience" class="nav__link" role="menuitem">Experience</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="#skills" class="nav__link" role="menuitem">Skills</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="#portfolio" class="nav__link" role="menuitem">Projects</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="#contact" class="nav__link" role="menuitem">Contact</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="https://musingwithmukesh.blogspot.com/" class="nav__link" role="menuitem" target="_blank" rel="noopener noreferrer">Blog</a>
+                        </li>
+                        <li class="nav__item" role="none">
+                            <a href="https://github.com/mukesh-843" class="nav__link" role="menuitem" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <i class='bx bx-menu' aria-hidden="true"></i>
+                </button>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--===== HOME =====-->
+            <section class="home" id="home">
+                <div class="home__background">
+                    <div class="home__background-overlay"></div>
+                </div>
+                <div class="particle-container">
+                    <canvas id="hero-particles" class="particle-canvas"></canvas>
+                </div>
+                <div class="home__container bd-grid">
+                    <div class="home__content">
+                        <div class="home__greeting">
+                            <span class="home__greeting-text">Welcome to my world</span>
+                        </div>
+                        <h1 class="home__title">
+                            <span class="home__title-line">Hey!👋🏻, I'm</span>
+                            <span class="home__title-name gradient-text">Mukesh Gautam</span>
+                        </h1>
+                        <p class="home__description">
+                            Passionate .NET Full Stack Developer dedicated to creating innovative web solutions and solving complex business problems through modern technology and best practices
+                        </p>
+                        
+                        <div class="home__buttons">
+                            <a href="Mukesh_Gautam_C.pdf" class="btn btn--primary">
+                                <i class='bx bxs-download'></i>
+                                Download CV
+                            </a>
+                            <a href="#contact" class="btn btn--secondary">
+                                <i class='bx bx-message-dots'></i>
+                                Let's Talk
+                            </a>
+                        </div>
+
+                        <div class="home__social">
+                            <a href="https://www.linkedin.com/in/mukesh-gautam-a9a79820a/" class="home__social-link" data-tooltip="LinkedIn">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
+                            <a href="https://github.com/mukesh-843" class="home__social-link" data-tooltip="GitHub">
+                                <i class='bx bxl-github'></i>
+                            </a>
+                            <a href="https://musingwithmukesh.blogspot.com/" class="home__social-link" data-tooltip="Blog">
+                                <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="home__image">
+                        <img src="assets/img/front.png" alt="Mukesh Gautam - Professional Photo" class="home__img" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="home__scroll">
+                    <a href="#about" class="home__scroll-link">
+                        <i class='bx bx-down-arrow-alt'></i>
+                        <span>Scroll down</span>
+                    </a>
+                </div>
+            </section>
+
+            <!--===== ENHANCED ABOUT =====-->
+            <section class="about section" id="about">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Get to know more about my journey and passion</p>
+                </div>
+
+                <div class="about__container">
+                    <div class="about__content">
+                        <div class="about__image-card">
+                            <div class="about__image-bg"></div>
+                            <img src="assets/img/front_1.png" alt="Mukesh Gautam - About Photo" class="about__img" loading="lazy">
+                            <div class="about__image-decorations">
+                                <div class="decoration decoration-1"></div>
+                                <div class="decoration decoration-2"></div>
+                                <div class="decoration decoration-3"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="about__info-card">
+                            <div class="about__header">
+                                <h3 class="about__name">Mukesh Gautam</h3>
+                                <span class="about__role">Project Engineer - .NET Full Stack Developer</span>
+                                <div class="about__status">
+                                    <div class="status-indicator"></div>
+                                    <span>Available for opportunities</span>
+                                </div>
+                            </div>
+
+                            <div class="about__description">
+                                <p class="about__text">
+                                    I graduated in July 2024 with a B.Tech in Computer Science & Engineering from 
+                                    <strong>Sikkim Manipal Institute of Technology</strong>. Currently, I am working as a 
+                                    <strong>Project Engineer (.NET Full Stack Developer)</strong> at <strong>Wipro Limited</strong>, 
+                                    where I develop enterprise-level applications using cutting-edge technologies.
+                                </p>
+                                <p class="about__text">
+                                    My research internship experience at <strong>IIT BHU</strong> has strengthened my expertise in 
+                                    applying advanced technology solutions to real-world challenges, particularly through innovative 
+                                    machine learning and materials science projects. I am passionate about creating scalable software 
+                                    solutions and contributing to technological advancement.
+                                </p>
+                            </div>
+
+                            <div class="about__stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">1+</div>
+                                    <div class="stat-label">Years Experience</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">15+</div>
+                                    <div class="stat-label">Projects Completed</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">10+</div>
+                                    <div class="stat-label">Technologies</div>
+                                </div>
+                            </div>
+
+                            <div class="about__highlights">
+                                <div class="highlight-item">
+                                    <i class='bx bxs-graduation'></i>
+                                    <div class="highlight-content">
+                                        <h4>Education</h4>
+                                        <p>B.Tech CSE - SMIT</p>
+                                    </div>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class='bx bxs-briefcase'></i>
+                                    <div class="highlight-content">
+                                        <h4>Current Role</h4>
+                                        <p>.NET Developer - Wipro</p>
+                                    </div>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class='bx bxs-trophy'></i>
+                                    <div class="highlight-content">
+                                        <h4>Research</h4>
+                                        <p>ML Intern - IIT BHU</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="about__social">
+                                <a href="https://www.linkedin.com/in/mukesh-gautam-a9a79820a/" class="about__social-link" data-tooltip="LinkedIn">
+                                    <i class='bx bxl-linkedin'></i>
+                                </a>
+                                <a href="https://github.com/mukesh-843" class="about__social-link" data-tooltip="GitHub">
+                                    <i class='bx bxl-github'></i>
+                                </a>
+                                <a href="https://www.youtube.com/channel/UCSBXZ4K6hBgkGohqyLmq63Q" class="about__social-link" data-tooltip="YouTube">
+                                    <i class='bx bxl-youtube'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <!--===== EXPERIENCE SECTION =====-->
+            <section class="experience section" id="experience">
+                <div class="section-header">
+                    <h2 class="section-title">Experience & Internships</h2>
+                    <p class="section-subtitle">My professional journey and work experience</p>
+                </div>
+
+                <div class="experience__container">
+                    <!-- Current Position -->
+                    <div class="experience__item experience__item--current">
+                        <div class="experience__timeline-dot"></div>
+                        <div class="experience__content">
+                            <div class="experience__header">
+                                <div class="experience__header-main">
+                                    <h3 class="experience__title">Project Engineer</h3>
+                                    <div class="experience__badge experience__badge--current">
+                                        <i class='bx bx-briefcase'></i>
+                                        Current Role
+                                    </div>
+                                </div>
+                                <div class="experience__company-info">
+                                    <h4 class="experience__company">
+                                        <i class='bx bx-buildings'></i>
+                                        Wipro Limited
+                                    </h4>
+                                    <span class="experience__period">
+                                        <i class='bx bx-calendar'></i>
+                                        March 2025 - Present | Hyderabad, India
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="experience__skills-tags">
+                                <span class="skill-tag">C#</span>
+                                <span class="skill-tag">.NET Core</span>
+                                <span class="skill-tag">SQL Server</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Azure</span>
+                                <span class="skill-tag">ASP.NET Core</span>
+                                <span class="skill-tag">Unit Testing</span>
+                                <span class="skill-tag">Clean Architecture</span>
+                            </div>
+
+                            <ul class="experience__description">
+                                <li>Underwent rigorous technical training in C#, .NET Core, SQL Server, React, and Azure fundamentals</li>
+                                <li>Built multiple POCs (proof-of-concept) and internal mini-projects using ASP.NET Core and React to strengthen full-stack development skills</li>
+                                <li>Practiced unit testing, clean architecture principles, and followed agile methodologies in mock project environments</li>
+                                <li>Developing expertise in modern web technologies and enterprise application development</li>
+                                <li>Gaining hands-on experience with cloud solutions and Microsoft Azure platform services</li>
+                                <li>Following industry best practices for code quality, testing, and software development lifecycle</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Research Internship -->
+                    <div class="experience__item experience__item--internship">
+                        <div class="experience__timeline-dot"></div>
+                        <div class="experience__content">
+                            <div class="experience__header">
+                                <div class="experience__header-main">
+                                    <h3 class="experience__title">Research Intern</h3>
+                                    <div class="experience__badge experience__badge--internship">
+                                        <i class='bx bx-flask'></i>
+                                        Research
+                                    </div>
+                                </div>
+                                <div class="experience__company-info">
+                                    <h4 class="experience__company">
+                                        <i class='bx bx-certification'></i>
+                                        IIT BHU (Banaras Hindu University)
+                                    </h4>
+                                    <span class="experience__period">
+                                        <i class='bx bx-calendar'></i>
+                                        January 2024 - July 2024 | Varanasi, India
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="experience__skills-tags">
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">GANs</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Random Forest</span>
+                                <span class="skill-tag">Pymatgen</span>
+                                <span class="skill-tag">Data Science</span>
+                                <span class="skill-tag">Materials Science</span>
+                            </div>
+
+                            <ul class="experience__description">
+                                <li>Developed a deep generative model to identify novel 2D materials using advanced machine learning techniques</li>
+                                <li>Conducted comprehensive data preparation including extraction, preprocessing, and featurization from multiple databases (Materials Project, C2DB, 2DMatpedia, C1DB, MC3D)</li>
+                                <li>Generated 100,000 new material formulas using a GAN model, with 17,949 valid and unique formulas after applying rigorous validity checks</li>
+                                <li>Screened potential 2D materials using a Random Forest classifier, resulting in 1,492 promising screened 2D formulas</li>
+                                <li>Predicted properties of the valid 2D formulas utilizing Pymatgen library for computational materials science</li>
+                                <li>Applied cutting-edge machine learning techniques for materials discovery and computational chemistry research</li>
+                            </ul>
+
+                            <div class="experience__actions">
+                                <a href="Certificate.pdf" class="btn btn--certificate" download>
+                                    <i class='bx bxs-download'></i>
+                                    Download Certificate
+                                </a>
+                                <div class="experience__achievement">
+                                    <i class='bx bx-trophy'></i>
+                                    <span>17,949 Valid Formulas Generated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--===== INTERACTIVE 3D CODE CUBE =====-->
+            <section class="code-showcase section">
+                <div class="section-header">
+                    <h2 class="section-title">Code Showcase</h2>
+                    <p class="section-subtitle">Interactive 3D visualization of my programming expertise across different technologies</p>
+                </div>
+
+                <div class="code-cube-wrapper bd-grid">
+                    <div id="code-cube-container">
+                        <!-- Three.js 3D Cube will be rendered here -->
+                    </div>
+                    
+                    <!-- Fallback content for no-js -->
+                    <div class="fallback-content">
+                        <h3>My Programming Languages</h3>
+                        <p>I work with multiple technologies including C#/.NET, JavaScript/React, SQL, Python, Azure Cloud, and Docker for containerization and DevOps.</p>
+                    </div>
+                </div>
+
+                <div class="code-cube-instructions">
+                    <p><i class='bx bx-mouse'></i>Drag to rotate • <i class='bx bx-show'></i>Hover to explore • <i class='bx bx-code-block'></i>Each face shows real code samples</p>
+                </div>
+
+                <div class="code-cube-features bd-grid">
+                    <div class="code-feature">
+                        <i class='bx bxl-microsoft'></i>
+                        <h4>C# & .NET</h4>
+                        <p>ASP.NET Core APIs, Entity Framework, and modern C# features</p>
+                    </div>
+                    <div class="code-feature">
+                        <i class='bx bxl-react'></i>
+                        <h4>React & JavaScript</h4>
+                        <p>Modern React hooks, state management, and responsive UIs</p>
+                    </div>
+                    <div class="code-feature">
+                        <i class='bx bx-data'></i>
+                        <h4>Database & SQL</h4>
+                        <p>Complex queries, optimization, and database design</p>
+                    </div>
+                    <div class="code-feature">
+                        <i class='bx bxl-python'></i>
+                        <h4>Python & ML</h4>
+                        <p>Data analysis, machine learning, and automation scripts</p>
+                    </div>
+                    <div class="code-feature">
+                        <i class='bx bxl-microsoft'></i>
+                        <h4>Azure Cloud</h4>
+                        <p>Serverless functions, cloud architecture, and DevOps</p>
+                    </div>
+                    <div class="code-feature">
+                        <i class='bx bxl-docker'></i>
+                        <h4>Docker & DevOps</h4>
+                        <p>Containerization, CI/CD pipelines, and deployment</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--===== INTERACTIVE TERMINAL =====-->
+            <section class="terminal-section section">
+                <div class="section-header">
+                    <h2 class="section-title">Interactive Terminal</h2>
+                    <p class="section-subtitle">Explore my projects and skills through a command-line interface. Type commands to discover my technical expertise, projects, and experience in an interactive way!</p>
+                </div>
+
+                <div class="terminal-wrapper bd-grid">
+                    <div id="interactive-terminal">
+                        <!-- Terminal will be created here by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="terminal-features bd-grid">
+                    <div class="terminal-feature">
+                        <i class='bx bx-terminal'></i>
+                        <h4>Real Terminal Experience</h4>
+                        <p>Navigate through my projects using authentic Linux-style commands with history and auto-completion</p>
+                    </div>
+                    <div class="terminal-feature">
+                        <i class='bx bx-help-circle'></i>
+                        <h4>Interactive Help System</h4>
+                        <p>Type 'help' to discover all available commands and explore different aspects of my professional profile</p>
+                    </div>
+                    <div class="terminal-feature">
+                        <i class='bx bx-file-find'></i>
+                        <h4>File System Navigation</h4>
+                        <p>Use commands like 'ls', 'cat', and 'pwd' to browse through my project files and documentation</p>
+                    </div>
+                    <div class="terminal-feature">
+                        <i class='bx bx-download'></i>
+                        <h4>Direct Actions</h4>
+                        <p>Download my resume, visit social profiles, or open project links directly from terminal commands</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--===== ENHANCED SKILLS =====-->
+            <section class="skills section" id="skills">
+                <div class="particle-container">
+                    <canvas id="skills-particles" class="particle-canvas"></canvas>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Technologies and tools I work with to bring ideas to life</p>
+                </div>
+
+                <div class="skills__container">
+                    <div class="skills__categories">
+                        <!-- Frontend Development -->
+                        <div class="skills__category">
+                            <div class="category__header">
+                                <i class='bx bx-code-alt category__icon'></i>
+                                <h3 class="category__title">Frontend Development</h3>
+                            </div>
+                            <div class="skills__grid">
+                                <div class="skill__item" data-skill="95">
+                                    <div class="skill__info">
+                                        <span class="skill__name">HTML5</span>
+                                        <span class="skill__percentage">95%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="95"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="90">
+                                    <div class="skill__info">
+                                        <span class="skill__name">CSS3</span>
+                                        <span class="skill__percentage">90%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="90"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="85">
+                                    <div class="skill__info">
+                                        <span class="skill__name">JavaScript</span>
+                                        <span class="skill__percentage">85%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="85"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="80">
+                                    <div class="skill__info">
+                                        <span class="skill__name">ReactJS</span>
+                                        <span class="skill__percentage">80%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="80"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="85">
+                                    <div class="skill__info">
+                                        <span class="skill__name">Bootstrap</span>
+                                        <span class="skill__percentage">85%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="85"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Backend Development -->
+                        <div class="skills__category">
+                            <div class="category__header">
+                                <i class='bx bx-server category__icon'></i>
+                                <h3 class="category__title">Backend Development</h3>
+                            </div>
+                            <div class="skills__grid">
+                                <div class="skill__item" data-skill="90">
+                                    <div class="skill__info">
+                                        <span class="skill__name">.NET Core</span>
+                                        <span class="skill__percentage">90%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="90"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="88">
+                                    <div class="skill__info">
+                                        <span class="skill__name">C#</span>
+                                        <span class="skill__percentage">88%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="88"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="75">
+                                    <div class="skill__info">
+                                        <span class="skill__name">Node.js</span>
+                                        <span class="skill__percentage">75%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="75"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="85">
+                                    <div class="skill__info">
+                                        <span class="skill__name">SQL Server</span>
+                                        <span class="skill__percentage">85%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="85"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="80">
+                                    <div class="skill__info">
+                                        <span class="skill__name">MySQL</span>
+                                        <span class="skill__percentage">80%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="80"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloud & DevOps -->
+                        <div class="skills__category">
+                            <div class="category__header">
+                                <i class='bx bx-cloud category__icon'></i>
+                                <h3 class="category__title">Cloud & DevOps</h3>
+                            </div>
+                            <div class="skills__grid">
+                                <div class="skill__item" data-skill="82">
+                                    <div class="skill__info">
+                                        <span class="skill__name">Microsoft Azure</span>
+                                        <span class="skill__percentage">82%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="82"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="75">
+                                    <div class="skill__info">
+                                        <span class="skill__name">Git & GitHub</span>
+                                        <span class="skill__percentage">85%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="85"></div>
+                                    </div>
+                                </div>
+                                <div class="skill__item" data-skill="70">
+                                    <div class="skill__info">
+                                        <span class="skill__name">Docker</span>
+                                        <span class="skill__percentage">70%</span>
+                                    </div>
+                                    <div class="skill__bar">
+                                        <div class="skill__progress" data-width="70"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Programming Fundamentals -->
+                        <div class="skills__category">
+                            <div class="category__header">
+                                <i class='bx bx-brain category__icon'></i>
+                                <h3 class="category__title">Core Skills</h3>
+                            </div>
+                            <div class="skills__tags">
+                                <span class="skill__tag">Data Structures</span>
+                                <span class="skill__tag">Algorithms</span>
+                                <span class="skill__tag">OOP</span>
+                                <span class="skill__tag">System Design</span>
+                                <span class="skill__tag">Problem Solving</span>
+                                <span class="skill__tag">Debugging</span>
+                                <span class="skill__tag">Testing</span>
+                                <span class="skill__tag">Agile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills__image">
+                        <div class="skills__image-bg"></div>
+                        <img src="assets/img/walla.jpg" alt="Skills Illustration" class="skills__img" loading="lazy">
+                        <div class="skills__floating-icons">
+                            <div class="floating-icon floating-icon-1">
+                                <i class='bx bxl-javascript'></i>
+                            </div>
+                            <div class="floating-icon floating-icon-2">
+                                <i class='bx bxl-react'></i>
+                            </div>
+                            <div class="floating-icon floating-icon-3">
+                                <i class='bx bxl-nodejs'></i>
+                            </div>
+                            <div class="floating-icon floating-icon-4">
+                                <i class='bx bxl-microsoft'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--===== SKILLS RADAR CHART =====-->
+                <div class="skills-radar-section">
+                    <div class="skills-radar-header">
+                        <h3 class="skills-radar-title">Skills Proficiency</h3>
+                        <p class="skills-radar-subtitle">Interactive radar visualization of my technical competencies and experience levels</p>
+                    </div>
+                    <div id="skills-radar-container">
+                        <!-- Radar chart will be rendered here -->
+                    </div>
+                </div>
+            </section>
+
+           
+          
+
+            <!--===== PROJECTS =====-->
+            <section class="portfolio section" id="portfolio">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="portfolio__container bd-grid">
+                    <div class="portfolio__img">
+                        <img src="assets/img/1.png" alt="Yoga Website Project" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://mukesh-843.github.io/YOGA_WEBSITE/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="assets/img/Tesla.png" alt="Tesla Clone Website" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://tteslas-clone.netlify.app/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="assets/img/3.png" alt="Tindog Project" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://mukesh-843.github.io/Tindog/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="assets/img/4.png" alt="Web Development Project" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="assets/img/5.png" alt="Software Development Project" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="portfolio__img">
+                        <img src="assets/img/6.png" alt="Full Stack Project" loading="lazy">
+                        <div class="portfolio__link">
+                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--===== CONTACT =====-->
+            <section class="contact section" id="contact">
+                <div class="particle-container">
+                    <canvas id="contact-particles" class="particle-canvas"></canvas>
+                </div>
+                <h2 class="section-title">Contact Me</h2>
+
+                <div class="contact__container bd-grid">
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">EMAIL</h3>
+                        <span class="contact__text">gmukesh843@gmail.com</span>
+
+                        <h3 class="contact__subtitle">PHONE</h3>
+                        <span class="contact__text">+919617002169</span>
+
+                        <h3 class="contact__subtitle">LOCATION</h3>
+                        <span class="contact__text">Satna, Madhya Pradesh, India</span>
+                    </div>
+
+                    <form class="contact__form" action="https://formsubmit.co/60d54996173484aef6bbeafd1ba6c6c0" method="POST" id="contactForm">
+                        <!-- Hidden fields for FormSubmit configuration -->
+                        <input type="hidden" name="_honey" style="display: none;">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="success.html">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Mukesh Gautam Portfolio">
+                        <input type="hidden" name="_template" value="table">
+
+                        <div class="contact__inputs">
+                            <input type="text" name="name" placeholder="Full Name" class="contact__input" required minlength="2" maxlength="50">
+                            <input type="email" name="email" placeholder="Email Address" class="contact__input" required>
+                        </div>
+
+                        <textarea name="message" placeholder="Your Message" cols="0" rows="10" class="contact__input" required minlength="10" maxlength="1000"></textarea>
+
+                        <button type="submit" class="contact__button" id="submitBtn">
+                            <i class='bx bx-send'></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!--===== ENHANCED FOOTER =====-->
+        <footer class="footer section">
+            <div class="footer__container bd-grid">
+                <div class="footer__data">
+                    <h2 class="footer__title">Mukesh Gautam</h2>
+                    <p class="footer__text">Project Engineer - .NET Full Stack Developer</p>
+                    <p class="footer__subtitle">Sikkim Manipal Institute Of Technology Graduate</p>
+                    <p class="footer__description">Passionate about creating innovative solutions and delivering high-quality software applications.</p>
+                </div>
+
+                <div class="footer__data">
+                    <h2 class="footer__title">QUICK LINKS</h2>
+                    <ul>
+                        <li><a href="#home" class="footer__link">Home</a></li>
+                        <li><a href="#about" class="footer__link">About</a></li>
+                        <li><a href="#experience" class="footer__link">Experience</a></li>
+                        <li><a href="#skills" class="footer__link">Skills</a></li>
+                        <li><a href="#portfolio" class="footer__link">Projects</a></li>
+                        <li><a href="#contact" class="footer__link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__data">
+                    <h2 class="footer__title">GET IN TOUCH</h2>
+                    <div class="footer__contact">
+                        <p class="footer__contact-info">
+                            <i class='bx bx-envelope'></i>
+                            <span>gmukesh843@gmail.com</span>
+                        </p>
+                        <p class="footer__contact-info">
+                            <i class='bx bx-phone'></i>
+                            <span>+919617002169</span>
+                        </p>
+                        <p class="footer__contact-info">
+                            <i class='bx bx-map'></i>
+                            <span>Sikkim, India</span>
+                        </p>
+                    </div>
+                    <div class="footer__social-container">
+                        <a href="https://www.linkedin.com/in/mukesh-gautam-a9a79820a/" class="footer__social" target="_blank" title="LinkedIn">
+                            <i class='bx bxl-linkedin'></i>
+                        </a>
+                        <a href="https://www.instagram.com/iammukeshgautam/" class="footer__social" target="_blank" title="Instagram">
+                            <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="https://www.facebook.com/Mukesh843" class="footer__social" target="_blank" title="Facebook">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+                        <a href="https://github.com/mukesh-843" class="footer__social" target="_blank" title="GitHub">
+                            <i class='bx bxl-github'></i>
+                        </a>
+                        <a href="https://musingwithmukesh.blogspot.com/" class="footer__social" target="_blank" title="Blog">
+                            <i class='bx bx-link-external'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__tag">
+                    <p class="footer__copyright">© 2025 Mukesh Gautam. All Rights Reserved</p>
+                </div>
+            </div>
+        </footer>
+
+        <!--===== SCROLL TO TOP BUTTON =====-->
+        <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+            <i class='bx bx-chevron-up'></i>
+        </button>
+
+        <!--===== PERFORMANCE MANAGER =====-->
+        <script src="assets/js/performance-manager.js" defer></script>
+
+        <!--===== 3D CODE CUBE =====-->
+        <script src="assets/js/code-cube.js" defer></script>
+
+        <!--===== INTERACTIVE TERMINAL =====-->
+        <script src="assets/js/terminal.js" defer></script>
+
+        <!--===== PARTICLE BACKGROUND =====-->
+        <script src="assets/js/particles.js" defer></script>
+
+        <!--===== SKILLS RADAR CHART =====-->
+        <script src="assets/js/skills-radar.js" defer></script>
+
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js" defer></script>
+    </body>
+</html>
