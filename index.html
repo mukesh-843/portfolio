@@ -58,10 +58,11 @@
     <style>
         /* Critical above-the-fold styles */
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Montserrat',sans-serif;line-height:1.6;color:#475569}
-        .preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;display:flex;justify-content:center;align-items:center;z-index:10000;transition:opacity 0.3s ease}
-        .preloader__spinner{text-align:center}.preloader__circle{width:50px;height:50px;border:3px solid #3b82f6;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
-        .preloader__text{color:#3b82f6;font-size:1.5rem;font-weight:600}
+        body{font-family:'Inter',sans-serif;line-height:1.6;color:#475569}
+        .preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0071e3 0%,#f56d3b 100%);display:flex;justify-content:center;align-items:center;z-index:10000;transition:opacity 0.6s ease}
+        .preloader__spinner{text-align:center;position:relative}
+        .preloader__circle{width:80px;height:80px;border:4px solid rgba(255,255,255,0.2);border-top:4px solid #ffffff;border-radius:50%;animation:spin 1s ease-in-out infinite;margin:0 auto 1.5rem}
+        .preloader__text{color:#ffffff;font-size:2rem;font-weight:700;letter-spacing:0.05em;text-shadow:0 2px 10px rgba(0,0,0,0.2)}
         @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
         .l-header{position:fixed;top:0;left:0;width:100%;background:rgba(15,23,42,0.95);backdrop-filter:blur(10px);z-index:1000;transition:all 0.3s ease}
         .nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;max-width:1200px;margin:0 auto}
@@ -144,20 +145,17 @@
                 <div class="home__background">
                     <div class="home__background-overlay"></div>
                 </div>
-                <div class="particle-container">
-                    <canvas id="hero-particles" class="particle-canvas"></canvas>
-                </div>
                 <div class="home__container bd-grid">
                     <div class="home__content">
                         <div class="home__greeting">
-                            <span class="home__greeting-text">Welcome to my world</span>
+                            <span class="home__greeting-text"></span>
                         </div>
                         <h1 class="home__title">
-                            <span class="home__title-line">Hey!👋🏻, I'm</span>
+                            <span class="home__title-line">Hello, I'm</span>
                             <span class="home__title-name gradient-text">Mukesh Gautam</span>
                         </h1>
                         <p class="home__description">
-                            Passionate .NET Full Stack Developer dedicated to creating innovative web solutions and solving complex business problems through modern technology and best practices
+                            .NET Full Stack Developer specializing in building scalable enterprise applications with modern technologies and cloud solutions
                         </p>
                         
                         <div class="home__buttons">
@@ -166,8 +164,8 @@
                                 Download CV
                             </a>
                             <a href="#contact" class="btn btn--secondary">
-                                <i class='bx bx-message-dots'></i>
-                                Let's Talk
+                                <i class='bx bx-envelope'></i>
+                                Contact Me
                             </a>
                         </div>
 
@@ -179,7 +177,7 @@
                                 <i class='bx bxl-github'></i>
                             </a>
                             <a href="https://musingwithmukesh.blogspot.com/" class="home__social-link" data-tooltip="Blog">
-                                <i class='bx bx-link-external'></i>
+                                <i class='bx bxl-blogger'></i>
                             </a>
                         </div>
                     </div>
@@ -228,16 +226,14 @@
 
                             <div class="about__description">
                                 <p class="about__text">
-                                    I graduated in July 2024 with a B.Tech in Computer Science & Engineering from 
-                                    <strong>Sikkim Manipal Institute of Technology</strong>. Currently, I am working as a 
-                                    <strong>Project Engineer (.NET Full Stack Developer)</strong> at <strong>Wipro Limited</strong>, 
-                                    where I develop enterprise-level applications using cutting-edge technologies.
+                                    I'm a <strong>Project Engineer (.NET Full Stack Developer)</strong> at <strong>Wipro Limited</strong>, 
+                                    specializing in enterprise-level applications with ASP.NET Core, React, and Azure. I graduated from 
+                                    <strong>Sikkim Manipal Institute of Technology</strong> (July 2024) with a B.Tech in Computer Science.
                                 </p>
                                 <p class="about__text">
-                                    My research internship experience at <strong>IIT BHU</strong> has strengthened my expertise in 
-                                    applying advanced technology solutions to real-world challenges, particularly through innovative 
-                                    machine learning and materials science projects. I am passionate about creating scalable software 
-                                    solutions and contributing to technological advancement.
+                                    My research experience at <strong>IIT BHU</strong> focused on machine learning applications in materials 
+                                    science, where I developed deep generative models for discovering novel 2D materials, demonstrating my 
+                                    ability to apply cutting-edge technology to solve complex challenges.
                                 </p>
                             </div>
 
@@ -421,355 +417,229 @@
 
 
 
-
-
-
-            <!--===== INTERACTIVE 3D CODE CUBE =====-->
-            <section class="code-showcase section">
-                <div class="section-header">
-                    <h2 class="section-title">Code Showcase</h2>
-                    <p class="section-subtitle">Interactive 3D visualization of my programming expertise across different technologies</p>
-                </div>
-
-                <div class="code-cube-wrapper bd-grid">
-                    <div id="code-cube-container">
-                        <!-- Three.js 3D Cube will be rendered here -->
-                    </div>
-                    
-                    <!-- Fallback content for no-js -->
-                    <div class="fallback-content">
-                        <h3>My Programming Languages</h3>
-                        <p>I work with multiple technologies including C#/.NET, JavaScript/React, SQL, Python, Azure Cloud, and Docker for containerization and DevOps.</p>
-                    </div>
-                </div>
-
-                <div class="code-cube-instructions">
-                    <p><i class='bx bx-mouse'></i>Drag to rotate • <i class='bx bx-show'></i>Hover to explore • <i class='bx bx-code-block'></i>Each face shows real code samples</p>
-                </div>
-
-                <div class="code-cube-features bd-grid">
-                    <div class="code-feature">
-                        <i class='bx bxl-microsoft'></i>
-                        <h4>C# & .NET</h4>
-                        <p>ASP.NET Core APIs, Entity Framework, and modern C# features</p>
-                    </div>
-                    <div class="code-feature">
-                        <i class='bx bxl-react'></i>
-                        <h4>React & JavaScript</h4>
-                        <p>Modern React hooks, state management, and responsive UIs</p>
-                    </div>
-                    <div class="code-feature">
-                        <i class='bx bx-data'></i>
-                        <h4>Database & SQL</h4>
-                        <p>Complex queries, optimization, and database design</p>
-                    </div>
-                    <div class="code-feature">
-                        <i class='bx bxl-python'></i>
-                        <h4>Python & ML</h4>
-                        <p>Data analysis, machine learning, and automation scripts</p>
-                    </div>
-                    <div class="code-feature">
-                        <i class='bx bxl-microsoft'></i>
-                        <h4>Azure Cloud</h4>
-                        <p>Serverless functions, cloud architecture, and DevOps</p>
-                    </div>
-                    <div class="code-feature">
-                        <i class='bx bxl-docker'></i>
-                        <h4>Docker & DevOps</h4>
-                        <p>Containerization, CI/CD pipelines, and deployment</p>
-                    </div>
-                </div>
-            </section>
-
-            <!--===== INTERACTIVE TERMINAL =====-->
-            <section class="terminal-section section">
-                <div class="section-header">
-                    <h2 class="section-title">Interactive Terminal</h2>
-                    <p class="section-subtitle">Explore my projects and skills through a command-line interface. Type commands to discover my technical expertise, projects, and experience in an interactive way!</p>
-                </div>
-
-                <div class="terminal-wrapper bd-grid">
-                    <div id="interactive-terminal">
-                        <!-- Terminal will be created here by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="terminal-features bd-grid">
-                    <div class="terminal-feature">
-                        <i class='bx bx-terminal'></i>
-                        <h4>Real Terminal Experience</h4>
-                        <p>Navigate through my projects using authentic Linux-style commands with history and auto-completion</p>
-                    </div>
-                    <div class="terminal-feature">
-                        <i class='bx bx-help-circle'></i>
-                        <h4>Interactive Help System</h4>
-                        <p>Type 'help' to discover all available commands and explore different aspects of my professional profile</p>
-                    </div>
-                    <div class="terminal-feature">
-                        <i class='bx bx-file-find'></i>
-                        <h4>File System Navigation</h4>
-                        <p>Use commands like 'ls', 'cat', and 'pwd' to browse through my project files and documentation</p>
-                    </div>
-                    <div class="terminal-feature">
-                        <i class='bx bx-download'></i>
-                        <h4>Direct Actions</h4>
-                        <p>Download my resume, visit social profiles, or open project links directly from terminal commands</p>
-                    </div>
-                </div>
-            </section>
-
             <!--===== ENHANCED SKILLS =====-->
             <section class="skills section" id="skills">
-                <div class="particle-container">
-                    <canvas id="skills-particles" class="particle-canvas"></canvas>
-                </div>
                 <div class="section-header">
                     <h2 class="section-title">Technical Skills</h2>
-                    <p class="section-subtitle">Technologies and tools I work with to bring ideas to life</p>
+                    <p class="section-subtitle">Technologies and tools I work with to build innovative solutions</p>
                 </div>
 
-                <div class="skills__container">
-                    <div class="skills__categories">
-                        <!-- Frontend Development -->
-                        <div class="skills__category">
-                            <div class="category__header">
-                                <i class='bx bx-code-alt category__icon'></i>
-                                <h3 class="category__title">Frontend Development</h3>
-                            </div>
-                            <div class="skills__grid">
-                                <div class="skill__item" data-skill="95">
-                                    <div class="skill__info">
-                                        <span class="skill__name">HTML5</span>
-                                        <span class="skill__percentage">95%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="95"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="90">
-                                    <div class="skill__info">
-                                        <span class="skill__name">CSS3</span>
-                                        <span class="skill__percentage">90%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="85">
-                                    <div class="skill__info">
-                                        <span class="skill__name">JavaScript</span>
-                                        <span class="skill__percentage">85%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="80">
-                                    <div class="skill__info">
-                                        <span class="skill__name">ReactJS</span>
-                                        <span class="skill__percentage">80%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="80"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="85">
-                                    <div class="skill__info">
-                                        <span class="skill__name">Bootstrap</span>
-                                        <span class="skill__percentage">85%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="skills__container bd-grid">
+                    <!-- Frontend Skills -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-code-alt'></i>
                         </div>
-
-                        <!-- Backend Development -->
-                        <div class="skills__category">
-                            <div class="category__header">
-                                <i class='bx bx-server category__icon'></i>
-                                <h3 class="category__title">Backend Development</h3>
+                        <h3 class="skill-card__title">Frontend</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bxl-html5'></i>
+                                <span>HTML5</span>
                             </div>
-                            <div class="skills__grid">
-                                <div class="skill__item" data-skill="90">
-                                    <div class="skill__info">
-                                        <span class="skill__name">.NET Core</span>
-                                        <span class="skill__percentage">90%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="90"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="88">
-                                    <div class="skill__info">
-                                        <span class="skill__name">C#</span>
-                                        <span class="skill__percentage">88%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="88"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="75">
-                                    <div class="skill__info">
-                                        <span class="skill__name">Node.js</span>
-                                        <span class="skill__percentage">75%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="75"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="85">
-                                    <div class="skill__info">
-                                        <span class="skill__name">SQL Server</span>
-                                        <span class="skill__percentage">85%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="80">
-                                    <div class="skill__info">
-                                        <span class="skill__name">MySQL</span>
-                                        <span class="skill__percentage">80%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="80"></div>
-                                    </div>
-                                </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-css3'></i>
+                                <span>CSS3</span>
                             </div>
-                        </div>
-
-                        <!-- Cloud & DevOps -->
-                        <div class="skills__category">
-                            <div class="category__header">
-                                <i class='bx bx-cloud category__icon'></i>
-                                <h3 class="category__title">Cloud & DevOps</h3>
-                            </div>
-                            <div class="skills__grid">
-                                <div class="skill__item" data-skill="82">
-                                    <div class="skill__info">
-                                        <span class="skill__name">Microsoft Azure</span>
-                                        <span class="skill__percentage">82%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="82"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="75">
-                                    <div class="skill__info">
-                                        <span class="skill__name">Git & GitHub</span>
-                                        <span class="skill__percentage">85%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="85"></div>
-                                    </div>
-                                </div>
-                                <div class="skill__item" data-skill="70">
-                                    <div class="skill__info">
-                                        <span class="skill__name">Docker</span>
-                                        <span class="skill__percentage">70%</span>
-                                    </div>
-                                    <div class="skill__bar">
-                                        <div class="skill__progress" data-width="70"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Programming Fundamentals -->
-                        <div class="skills__category">
-                            <div class="category__header">
-                                <i class='bx bx-brain category__icon'></i>
-                                <h3 class="category__title">Core Skills</h3>
-                            </div>
-                            <div class="skills__tags">
-                                <span class="skill__tag">Data Structures</span>
-                                <span class="skill__tag">Algorithms</span>
-                                <span class="skill__tag">OOP</span>
-                                <span class="skill__tag">System Design</span>
-                                <span class="skill__tag">Problem Solving</span>
-                                <span class="skill__tag">Debugging</span>
-                                <span class="skill__tag">Testing</span>
-                                <span class="skill__tag">Agile</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skills__image">
-                        <div class="skills__image-bg"></div>
-                        <img src="assets/img/walla.jpg" alt="Skills Illustration" class="skills__img" loading="lazy">
-                        <div class="skills__floating-icons">
-                            <div class="floating-icon floating-icon-1">
+                            <div class="skill-badge">
                                 <i class='bx bxl-javascript'></i>
+                                <span>JavaScript</span>
                             </div>
-                            <div class="floating-icon floating-icon-2">
+                            <div class="skill-badge">
                                 <i class='bx bxl-react'></i>
+                                <span>React</span>
                             </div>
-                            <div class="floating-icon floating-icon-3">
-                                <i class='bx bxl-nodejs'></i>
-                            </div>
-                            <div class="floating-icon floating-icon-4">
-                                <i class='bx bxl-microsoft'></i>
+                            <div class="skill-badge">
+                                <i class='bx bxl-bootstrap'></i>
+                                <span>Bootstrap</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!--===== SKILLS RADAR CHART =====-->
-                <div class="skills-radar-section">
-                    <div class="skills-radar-header">
-                        <h3 class="skills-radar-title">Skills Proficiency</h3>
-                        <p class="skills-radar-subtitle">Interactive radar visualization of my technical competencies and experience levels</p>
+                    <!-- Backend Skills -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-server'></i>
+                        </div>
+                        <h3 class="skill-card__title">Backend</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bxl-microsoft'></i>
+                                <span>.NET Core</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxs-file-doc'></i>
+                                <span>C#</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-nodejs'></i>
+                                <span>Node.js</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-data'></i>
+                                <span>SQL Server</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxs-data'></i>
+                                <span>MySQL</span>
+                            </div>
+                        </div>
                     </div>
-                    <div id="skills-radar-container">
-                        <!-- Radar chart will be rendered here -->
+
+                    <!-- Cloud & DevOps -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-cloud'></i>
+                        </div>
+                        <h3 class="skill-card__title">Cloud & DevOps</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bxl-microsoft'></i>
+                                <span>Azure</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-git'></i>
+                                <span>Git</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-github'></i>
+                                <span>GitHub</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-docker'></i>
+                                <span>Docker</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI & ML -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-brain'></i>
+                        </div>
+                        <h3 class="skill-card__title">AI & ML</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bxl-python'></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-chip'></i>
+                                <span>TensorFlow</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-brain'></i>
+                                <span>Machine Learning</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-shape-circle'></i>
+                                <span>Deep Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Skills -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-bulb'></i>
+                        </div>
+                        <h3 class="skill-card__title">Core Competencies</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bx-code-block'></i>
+                                <span>Data Structures</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-math'></i>
+                                <span>Algorithms</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-cube'></i>
+                                <span>OOP</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-layout'></i>
+                                <span>System Design</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-test-tube'></i>
+                                <span>Testing</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-git-branch'></i>
+                                <span>Agile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon">
+                            <i class='bx bx-wrench'></i>
+                        </div>
+                        <h3 class="skill-card__title">Tools & Platforms</h3>
+                        <div class="skill-card__items">
+                            <div class="skill-badge">
+                                <i class='bx bxl-visual-studio'></i>
+                                <span>VS Code</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bxl-visual-studio'></i>
+                                <span>Visual Studio</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-terminal'></i>
+                                <span>Postman</span>
+                            </div>
+                            <div class="skill-badge">
+                                <i class='bx bx-bug'></i>
+                                <span>Debugging</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-
-           
-          
 
             <!--===== PROJECTS =====-->
             <section class="portfolio section" id="portfolio">
-                <h2 class="section-title">Projects</h2>
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Showcasing my work in AI, full-stack development, and cloud deployment</p>
+                </div>
 
                 <div class="portfolio__container bd-grid">
-                    <div class="portfolio__img">
-                        <img src="assets/img/1.png" alt="Yoga Website Project" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://mukesh-843.github.io/YOGA_WEBSITE/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
+                    <div class="portfolio__card">
+                        <div class="portfolio__img">
+                            <img src="assets/img/work1.png" alt="AI Flower Classifier Project" loading="lazy">
+                            <div class="portfolio__overlay"></div>
+                        </div>
+                        <div class="portfolio__content">
+                            <h3 class="portfolio__title">AI Flower Classifier</h3>
+                            <p class="portfolio__description">Deep learning model for flower detection and classification using computer vision</p>
+                            <div class="portfolio__links">
+                                <a href="https://mukesh-843.github.io/Flower-Detection-Classification-/" class="portfolio__btn" target="_blank" rel="noopener noreferrer">
+                                    <i class="bx bx-link-external"></i> Live Demo
+                                </a>
+                                <a href="https://github.com/mukesh-843/Flower-Detection-Classification-" class="portfolio__btn portfolio__btn-secondary" target="_blank" rel="noopener noreferrer">
+                                    <i class="bx bxl-github"></i> GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="portfolio__img">
-                        <img src="assets/img/Tesla.png" alt="Tesla Clone Website" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://tteslas-clone.netlify.app/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
+
+                    <div class="portfolio__card">
+                        <div class="portfolio__img">
+                            <img src="assets/img/task-tracker.png" alt="Everyday Tasks - Task Tracker Application" loading="lazy">
+                            <div class="portfolio__overlay"></div>
                         </div>
-                    </div>
-                    <div class="portfolio__img">
-                        <img src="assets/img/3.png" alt="Tindog Project" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://mukesh-843.github.io/Tindog/" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View Project</a>
-                        </div>
-                    </div>
-                    <div class="portfolio__img">
-                        <img src="assets/img/4.png" alt="Web Development Project" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        </div>
-                    </div>
-                    <div class="portfolio__img">
-                        <img src="assets/img/5.png" alt="Software Development Project" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                        </div>
-                    </div>
-                    <div class="portfolio__img">
-                        <img src="assets/img/6.png" alt="Full Stack Project" loading="lazy">
-                        <div class="portfolio__link">
-                            <a href="https://github.com/mukesh-843" class="portfolio__link-name" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                        <div class="portfolio__content">
+                            <h3 class="portfolio__title">Everyday Tasks</h3>
+                            <p class="portfolio__description">A full-stack task management application with instant sync, priority tracking, and streak monitoring deployed on Azure</p>
+                            <div class="portfolio__links">
+                                <a href="https://mukesh-tasktracker-app-e2cvbgesawe8a3a4.centralindia-01.azurewebsites.net/" class="portfolio__btn" target="_blank" rel="noopener noreferrer">
+                                    <i class="bx bx-link-external"></i> Live Demo
+                                </a>
+                                <span class="portfolio__badge">Private Repository</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -777,41 +647,75 @@
 
             <!--===== CONTACT =====-->
             <section class="contact section" id="contact">
-                <div class="particle-container">
-                    <canvas id="contact-particles" class="particle-canvas"></canvas>
+                <div class="section-header">
+                    <h2 class="section-title">Contact Me</h2>
+                    <p class="section-subtitle">Let's connect and discuss how we can work together</p>
                 </div>
-                <h2 class="section-title">Contact Me</h2>
 
                 <div class="contact__container bd-grid">
                     <div class="contact__info">
-                        <h3 class="contact__subtitle">EMAIL</h3>
-                        <span class="contact__text">gmukesh843@gmail.com</span>
+                        <h3 class="contact__info-title">Get in Touch</h3>
+                        <p class="contact__info-text">Feel free to reach out for collaborations, opportunities, or just a friendly chat.</p>
+                        
+                        <div class="contact__info-cards">
+                            <div class="contact__info-card">
+                                <div class="contact__info-icon">
+                                    <i class='bx bx-envelope'></i>
+                                </div>
+                                <div class="contact__info-content">
+                                    <h4 class="contact__subtitle">Email</h4>
+                                    <a href="mailto:gmukesh843@gmail.com" class="contact__text">gmukesh843@gmail.com</a>
+                                </div>
+                            </div>
 
-                        <h3 class="contact__subtitle">PHONE</h3>
-                        <span class="contact__text">+919617002169</span>
+                            <div class="contact__info-card">
+                                <div class="contact__info-icon">
+                                    <i class='bx bx-phone'></i>
+                                </div>
+                                <div class="contact__info-content">
+                                    <h4 class="contact__subtitle">Phone</h4>
+                                    <a href="tel:+919617002169" class="contact__text">+91 96170 02169</a>
+                                </div>
+                            </div>
 
-                        <h3 class="contact__subtitle">LOCATION</h3>
-                        <span class="contact__text">Satna, Madhya Pradesh, India</span>
+                            <div class="contact__info-card">
+                                <div class="contact__info-icon">
+                                    <i class='bx bx-map'></i>
+                                </div>
+                                <div class="contact__info-content">
+                                    <h4 class="contact__subtitle">Location</h4>
+                                    <span class="contact__text">Satna, Madhya Pradesh, India</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <form class="contact__form" action="https://formsubmit.co/60d54996173484aef6bbeafd1ba6c6c0" method="POST" id="contactForm">
+                    <form class="contact__form" action="https://formsubmit.co/gmukesh843@gmail.com" method="POST" id="contactForm">
                         <!-- Hidden fields for FormSubmit configuration -->
                         <input type="hidden" name="_honey" style="display: none;">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="success.html">
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/success.html">
                         <input type="hidden" name="_subject" value="New Contact Form Submission - Mukesh Gautam Portfolio">
                         <input type="hidden" name="_template" value="table">
 
-                        <div class="contact__inputs">
-                            <input type="text" name="name" placeholder="Full Name" class="contact__input" required minlength="2" maxlength="50">
-                            <input type="email" name="email" placeholder="Email Address" class="contact__input" required>
+                        <div class="contact__form-group">
+                            <label for="name" class="contact__label">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" class="contact__input" required minlength="2" maxlength="50">
                         </div>
 
-                        <textarea name="message" placeholder="Your Message" cols="0" rows="10" class="contact__input" required minlength="10" maxlength="1000"></textarea>
+                        <div class="contact__form-group">
+                            <label for="email" class="contact__label">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" class="contact__input" required>
+                        </div>
+
+                        <div class="contact__form-group">
+                            <label for="message" class="contact__label">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about your project or inquiry..." rows="6" class="contact__input contact__textarea" required minlength="10" maxlength="1000"></textarea>
+                        </div>
 
                         <button type="submit" class="contact__button" id="submitBtn">
                             <i class='bx bx-send'></i>
-                            Send Message
+                            <span>Send Message</span>
                         </button>
                     </form>
                 </div>
@@ -824,8 +728,7 @@
                 <div class="footer__data">
                     <h2 class="footer__title">Mukesh Gautam</h2>
                     <p class="footer__text">Project Engineer - .NET Full Stack Developer</p>
-                    <p class="footer__subtitle">Sikkim Manipal Institute Of Technology Graduate</p>
-                    <p class="footer__description">Passionate about creating innovative solutions and delivering high-quality software applications.</p>
+                    <p class="footer__subtitle">Building scalable enterprise solutions with modern technologies</p>
                 </div>
 
                 <div class="footer__data">
@@ -853,7 +756,7 @@
                         </p>
                         <p class="footer__contact-info">
                             <i class='bx bx-map'></i>
-                            <span>Sikkim, India</span>
+                            <span>Satna, MP, India</span>
                         </p>
                     </div>
                     <div class="footer__social-container">
@@ -870,7 +773,7 @@
                             <i class='bx bxl-github'></i>
                         </a>
                         <a href="https://musingwithmukesh.blogspot.com/" class="footer__social" target="_blank" title="Blog">
-                            <i class='bx bx-link-external'></i>
+                            <i class='bx bxl-blogger'></i>
                         </a>
                     </div>
                 </div>
@@ -890,18 +793,6 @@
 
         <!--===== PERFORMANCE MANAGER =====-->
         <script src="assets/js/performance-manager.js" defer></script>
-
-        <!--===== 3D CODE CUBE =====-->
-        <script src="assets/js/code-cube.js" defer></script>
-
-        <!--===== INTERACTIVE TERMINAL =====-->
-        <script src="assets/js/terminal.js" defer></script>
-
-        <!--===== PARTICLE BACKGROUND =====-->
-        <script src="assets/js/particles.js" defer></script>
-
-        <!--===== SKILLS RADAR CHART =====-->
-        <script src="assets/js/skills-radar.js" defer></script>
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js" defer></script>
